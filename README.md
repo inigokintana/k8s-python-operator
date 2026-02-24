@@ -1,5 +1,5 @@
 # 1- Objective
-Build and controller/operator for k8s using Python Kopf (Kubernetes Operator Framework for Python). Kopf is a Python framework that helps you build Kubernetes controllers/operators in a simple and declarative way.  This is a  is a great choice, especially if you want to avoid the steep learning curve of Go and the official operator-sdk.
+Build a controller/operator for k8s using Python Kopf (Kubernetes Operator Framework for Python). Kopf is a Python framework that helps you build Kubernetes controllers/operators in a simple and declarative way.  This is a  is a great choice, especially if you want to avoid the steep learning curve of Go and the official operator-sdk.
 
 When people say **“K8S is the API to make APIs”**, they usually mean this:
  - Kubernetes itself is an API server that lets you define new APIs (via CRDs) and attach behavior to them (via controllers/operators).
@@ -27,8 +27,8 @@ So, Infrastructure becomes declarative APIs and extending Kubernetes into a plat
 
 - Kubernetes = API server
 - CRDs = API definitions
-- CR = an instance of the CRD - desired states
 - Controllers/ Operators = business logic
+- CR = an instance of the CRD - desired states
 - etcd = state storage
 - Reconciliation loop = automation engine
 
@@ -45,7 +45,7 @@ kind: MyDatabase
 kind: KafkaCluster
 kind: MLTrainingJob
 ````
-After applying a CRD, Kubernetes now supports:
+After applying a CRD and creating the CR Kubernetes now supports:
 
 ````
 kubectl get mydatabases
@@ -86,14 +86,14 @@ You can write the Controller/operator using:
 - Python + Kopf is ideal for quick, less complex operators where development speed and simplicity are priorities.
 - Go + Operator SDK is better suited for larger-scale, more complex operators, especially if you need high performance, scalability, or deep integration with the Kubernetes ecosystem.
 
-**Steps**:
+
+# 3 - Steps to create my 1st K8s API & Operator
+
 - Designing a new API - CRD
 - Implementing reconciliation logic - Controller / Operator
 - Run the controller / operator
 - Defining API instance or desired state - CR
 
-
-# 3 - Steps to create my 1st K8s API & Operator
 ## 3.1) Install Dependencies
 You’ll need Python and pip to install the necessary libraries.
 
@@ -135,6 +135,7 @@ spec:
 You can apply this CRD with kubectl:
 ````
 kubectl apply -f myapp-crd.yaml
+kubectl get crd myapps.myapp.example.com
 ````
 ## 3.2) Create a Simple Controller/Operator
 We'll create an operator that listens to a custom MyApp resource and logs its creation.
