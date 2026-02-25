@@ -4,4 +4,4 @@ metadata:
   name: my-first-app
   namespace: default
 spec:
-  description: "This is my first app created using an operator"
+  description: "This is my 3rd app created using an operator"
